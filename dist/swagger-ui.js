@@ -823,7 +823,7 @@ this["Handlebars"]["templates"]["resource"] = Handlebars.template({"compiler":[8
 
   return "<ul class='endpoints' id='"
     + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":1,"column":26},"end":{"line":1,"column":32}}}) : helper)))
-    + "_endpoint_list'>\n	<li class='endpoint'> \n		<ul class='operations'>\n			  <li class='OPTION operation' id='"
+    + "_endpoint_list'>\n	<li class='endpoint'> \n		<ul class='operations' style=\"margin-bottom: 0px;\">\n			  <li class='OPTION operation' id='"
     + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":4,"column":38},"end":{"line":4,"column":44}}}) : helper)))
     + "_HEADER' style=\"min-height:30px;\">\n			  		<div class=\"content\">\n			  			<div clas=\"heading\">\n			  				<h2 class=\"operation-title\">\n			  				    <span class='path'>\n			                        <a href='#!/"
     + alias4(((helper = (helper = lookupProperty(helpers,"encodedId") || (depth0 != null ? lookupProperty(depth0,"encodedId") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"encodedId","hash":{},"data":data,"loc":{"start":{"line":9,"column":39},"end":{"line":9,"column":52}}}) : helper)))
