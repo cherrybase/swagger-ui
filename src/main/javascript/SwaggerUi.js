@@ -3,7 +3,7 @@
 function jqlean(str){
     return str.replace("/","\\/");
 }
-        
+
 window.SwaggerUi = Backbone.Router.extend({
 
   dom_id: 'swagger_ui',
@@ -275,6 +275,9 @@ window.SwaggerUi.Views = {};
     } else {
         // Browser globals
         root.SwaggerUi = factory(root.b);
+    }
+    window.jqlean = function(str){
+      return str.replace("/","\\/");
     }
 }(this, function () {
     return SwaggerUi;
