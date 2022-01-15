@@ -37,6 +37,7 @@ gulp.task('clean', function() {
  * Processes Handlebars templates
  */
 function templates() {
+  console.log("TEMPLATING");
   return gulp
     .src(['./src/main/template/**/*'])
     .pipe(handlebars())
@@ -51,7 +52,7 @@ function templates() {
 /**
  * Build a distribution
  */
-gulp.task('dist', ['clean'], function() {
+gulp.task('dist', gulp.series('clean', function() {
 
   return es.merge(
       gulp.src([
@@ -71,12 +72,12 @@ gulp.task('dist', ['clean'], function() {
     .on('error', log)
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
-});
+}));
 
 /**
  * Processes less files into CSS files
  */
-gulp.task('less', ['clean'], function() {
+gulp.task('less', gulp.series('clean', function() {
 
   return gulp
     .src([
@@ -88,13 +89,13 @@ gulp.task('less', ['clean'], function() {
     .on('error', log)
     .pipe(gulp.dest('./src/main/html/css/'))
     .pipe(connect.reload());
-});
+}));
 
 
 /**
  * Copy lib and html folders
  */
-gulp.task('copy', ['less'], function() {
+gulp.task('copy', gulp.series('less', function() {
 
   // copy JavaScript files inside lib folder
   gulp
@@ -107,7 +108,7 @@ gulp.task('copy', ['less'], function() {
     .src(['./src/main/html/**/*'])
     .pipe(gulp.dest('./dist'))
     .on('error', log);
-});
+}));
 
 /**
  * Watch for changes and recompile
@@ -132,6 +133,9 @@ function log(error) {
   console.error(error.toString && error.toString());
 }
 
-
-gulp.task('default', ['dist', 'copy']);
-gulp.task('serve', ['connect', 'watch']);
+gulp.task('default', gulp.series('dist', function(done){
+//gulp.task('default', gulp.series('dist', 'copy', function(done){
+    console.log("BUILD SUCCESS");
+    done()
+}));
+gulp.task('serve', gulp.series('connect', 'watch'));
