@@ -95,8 +95,10 @@ window.Docs = {
       case 1:
         break;
       case 2:
+        fragments[0] = decodeURIComponent(fragments[0]);
+        fragments[1] = decodeURIComponent(fragments[1]);
         var target = '#resources_nav [data-resource] [data-endpoint=' + fragments[0] + '_' + fragments[1] + ']',
-          n = $('#swagger_sidebar').find(target),
+          n = $('#swagger_sidebar').find(jqlean(target)),
           attr = n.attr('data-selected');
 
         if (typeof attr == typeof undefined) {

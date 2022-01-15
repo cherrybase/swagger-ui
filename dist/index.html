@@ -18,7 +18,7 @@
     <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
     <script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
     <script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
-    <script src='lib/handlebars-2.0.0.js' type='text/javascript'></script>
+    <script src='lib/handlebars-4.7.7.js' type='text/javascript'></script>
     <script src='lib/underscore-min.js' type='text/javascript'></script>
     <script src='lib/backbone-min.js' type='text/javascript'></script>
     <script src='swagger-ui.js' type='text/javascript'></script>
@@ -38,6 +38,9 @@
                 jQuery.browser.version = RegExp.$1;
             }
         })();
+        function jqlean(str){
+            return str.replace("/","\\/");
+        }
     </script>
 
     <script type="text/javascript">
@@ -150,19 +153,19 @@
                     var nav = e.find("[data-navigator]");
                     if (nav.find("[data-endpoint][data-selected]").length) {
                         var o = nav.find("[data-endpoint][data-selected]"),
-                            a = $("#" + o.attr("data-endpoint")),
+                            a = $("#" + jqlean(o.attr("data-endpoint"))),
                             s = a.offset().top,
                             l = (s + a.outerHeight(), r("next")),
                             u = r("prev");
                         if (l.length) {
                             {
-                                var d = $("#" + l.attr("data-endpoint")), f = d.offset().top;
+                                var d = $("#" +jqlean(l.attr("data-endpoint"))), f = d.offset().top;
                                 f + d.outerHeight()
                             }
                             i() >= f && c(l)
                         }
                         if (u.length) {
-                            var p = $("#" + u.attr("data-endpoint")),
+                            var p = $("#" + jqlean(u.attr("data-endpoint"))),
                             g = u.offset().top;
                             v = (g + p.outerHeight(), 100);
                             i() < s - v && c(u)
@@ -180,7 +183,7 @@
                 function c(e) {
                     {
                         var n = $(".sticky-nav [data-navigator]");
-                        $("#" + e.attr("data-endpoint"))
+                        $("#" + jqlean(e.attr("data-endpoint")))
                     }
                     n.find("[data-resource]").removeClass("active");
                     n.find("[data-selected]").removeAttr("data-selected");

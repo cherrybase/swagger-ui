@@ -13,6 +13,10 @@ SwaggerUi.Views.SidebarHeaderView = Backbone.View.extend({
   render: function () {
     $(this.el).html(Handlebars.templates.sidebar_header(this.model));
 
+    this.addSidebarItem({
+      nickname : "HEADER",
+      parentId : this.model.operation.parentId
+    }, -1);
     for (var i = 0; i < this.model.operationsArray.length; i++) {
       var item = this.model.operationsArray[i].operation;
       item.nickname = this.model.operationsArray[i].nickname;
@@ -34,23 +38,28 @@ SwaggerUi.Views.SidebarHeaderView = Backbone.View.extend({
       router: this.router,
       swaggerOptions: this.options.swaggerOptions
     });
-    $(this.el).append(sidebarItemView.render().el);
+    var itm = sidebarItemView.render().el;
+    $(itm).addClass(i == -1 ? 'hidden' : 'nohidden');  
+    $(this.el).append(itm);//.addClass();
   },
 
   clickSidebarItem: function (e) {
 
     var elem = $(e.target);
-    var eln = $("#" + elem.attr("data-endpoint"));
+    var data_point = jqlean(elem.attr("data-endpoint"))
+    var eln = $("#" + data_point);
 
     if (elem.is(".item")) {
-      scroll(elem.attr("data-endpoint"));
+      scroll(data_point);
       setSelected(elem);
       updateUrl(eln.find(".path a").first().attr("href"))
     }
 
     /* scroll */
     function scroll(elem) {
+      console.log("Item",elem);
       var i = $(".sticky-nav").outerHeight();
+      console.log("scrollscrollscroll",elem);
       var r = $("#" + elem).offset().top - i - 10;
       matchMedia() && (r = $("#" + elem).offset().top - 10);
       scrollT(r)
@@ -60,7 +69,7 @@ SwaggerUi.Views.SidebarHeaderView = Backbone.View.extend({
     function setSelected(element) {
       {
         var nav = $(".sticky-nav [data-navigator]");
-        $("#" + element.attr("data-endpoint"))
+        $("#" + jqlean(element.attr("data-endpoint")))
       }
       nav.find("[data-resource]").removeClass("active");
       nav.find("[data-selected]").removeAttr("data-selected");

@@ -27,9 +27,10 @@ var banner = ['/**',
  * Clean ups ./dist folder
  */
 gulp.task('clean', function() {
+  console.log("Cleaning....")
   return gulp
     .src('./dist', {read: false})
-    .pipe(clean({force: true}))
+    //.pipe(clean({force: false}))
     .on('error', log);
 });
 
@@ -46,14 +47,16 @@ function templates() {
       namespace: 'Handlebars.templates',
       noRedeclare: true, // Avoid duplicate declarations
     }))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest('./dist/'))
     .on('error', log);
 }
 
 /**
  * Build a distribution
  */
-gulp.task('dist', gulp.series(function() {
-//gulp.task('dist', gulp.series('clean', function() {
+//gulp.task('dist', gulp.series(function() {
+gulp.task('dist', gulp.series('clean', function() {
   return es.merge(
       gulp.src([
         './src/main/javascript/**/*.js',
@@ -78,7 +81,6 @@ gulp.task('dist', gulp.series(function() {
  * Processes less files into CSS files
  */
 gulp.task('less', gulp.series('clean', function() {
-
   return gulp
     .src([
       './src/main/less/screen.less',
@@ -114,9 +116,8 @@ gulp.task('copy', gulp.series('less', function() {
  * Watch for changes and recompile
  */
 gulp.task('watch', function() {
-  return watch(['./src/**/*.{js,less,handlebars}'], function() {
-    gulp.start('default');
-  });
+  console.log("Watching")
+  return watch(['./src/**/*.{js,less,handlebars}'],  gulp.series('default'));
 });
 
 /**
@@ -130,12 +131,16 @@ gulp.task('connect', function() {
 });
 
 function log(error) {
+  console.log("ERRORR.....")
   console.error(error.toString && error.toString());
 }
 
-gulp.task('default', gulp.series('dist', function(done){
-//gulp.task('default', gulp.series('dist', 'copy', function(done){
+//gulp.task('default', gulp.series('dist', function(done){
+gulp.task('default', gulp.series('dist', 'copy', function(done){
     console.log("BUILD SUCCESS");
+    return done();
+}));
+gulp.task('serve', gulp.parallel('connect', 'watch',function(done){
+    console.log("serve SUCCESS");
     done()
 }));
-gulp.task('serve', gulp.series('connect', 'watch'));

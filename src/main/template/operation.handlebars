@@ -2,9 +2,9 @@
     <li class='{{method}} operation' id='{{parentId}}_{{nickname}}'>
         <div class='content'>
             <div class='heading'>
-                <h2 class='operation-title'>{{summary}}</h2>
+                <h2 class='operation-title'><small>{{summary}}</small></h2>
 
-                <h3>
+                <h4>
                     <span class='http_method'>
                         <a href='#!/{{encodedParentId}}/{{nickname}}'>{{method}}</a>
                     </span>
@@ -12,7 +12,7 @@
                         <a href='#!/{{encodedParentId}}/{{nickname}}'
                            class="{{#if deprecated}}deprecated{{/if}}">{{path}}</a>
                     </span>
-                </h3>
+                </h4>
             </div>
 
             <a href="javascript:;" class="toggle-samples" data-toggle="tooltip" data-placement="left"

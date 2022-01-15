@@ -217,10 +217,11 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
   clickResource: function (e) {
     if (!$(e.target).is(".item")) {
-      var n = $(e.target).find(".item").first();
+      var elem = $(e.target);
+      var n = elem.find(".item").first();
       $('.sticky-nav').find("[data-resource].active").removeClass("active");
       $(e.target).find("[data-resource]").first().addClass("active");
-      n.trigger("click")
+      n.trigger("click");
     }
   },
 
