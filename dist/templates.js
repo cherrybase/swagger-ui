@@ -822,8 +822,10 @@ this["Handlebars"]["templates"]["resource"] = Handlebars.template({"compiler":[8
     + "_HEADER' style=\"min-height:30px;\">\n			  		<div class=\"content\">\n			  			<div clas=\"heading\">\n			  				<h2 class=\"operation-title\">\n			  				    <span class='path'>\n			                        <a href='#!/"
     + alias4(((helper = (helper = lookupProperty(helpers,"encodedId") || (depth0 != null ? lookupProperty(depth0,"encodedId") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"encodedId","hash":{},"data":data,"loc":{"start":{"line":9,"column":39},"end":{"line":9,"column":52}}}) : helper)))
     + "/HEADER'>"
-    + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":9,"column":61},"end":{"line":9,"column":67}}}) : helper)))
-    + "</a>\n			                    </span>\n			  				</h2>\n			  				<h4>\n\n			  				</h4>\n			  			</div>\n			  		</div>\n			  </li>\n		</ul>\n	</li>\n</ul>";
+    + alias4(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data,"loc":{"start":{"line":9,"column":61},"end":{"line":9,"column":69}}}) : helper)))
+    + "</a>\n			                    </span>\n			  				</h2>\n			  				<h4>\n			  					"
+    + alias4(((helper = (helper = lookupProperty(helpers,"summary") || (depth0 != null ? lookupProperty(depth0,"summary") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"summary","hash":{},"data":data,"loc":{"start":{"line":13,"column":10},"end":{"line":13,"column":21}}}) : helper)))
+    + "\n			  				</h4>\n			  			</div>\n			  		</div>\n			  </li>\n		</ul>\n	</li>\n</ul>";
 },"useData":true});
 this["Handlebars"]["templates"]["response_content_type"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
