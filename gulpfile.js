@@ -52,8 +52,8 @@ function templates() {
 /**
  * Build a distribution
  */
-gulp.task('dist', gulp.series('clean', function() {
-
+gulp.task('dist', gulp.series(function() {
+//gulp.task('dist', gulp.series('clean', function() {
   return es.merge(
       gulp.src([
         './src/main/javascript/**/*.js',
