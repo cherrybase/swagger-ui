@@ -21090,6 +21090,10 @@ module.exports = function(arr, fn, initial){
 
 'use strict';
 
+function jqlean(str){
+    return str.replace("/","\\/");
+}
+        
 window.SwaggerUi = Backbone.Router.extend({
 
   dom_id: 'swagger_ui',
